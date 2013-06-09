@@ -1,32 +1,45 @@
-MooseX-MultiInitArg
+NAME
+    MooseX::MultiInitArg - Attributes with aliases for constructor
+    arguments.
 
-Specify aliases to be used in your constructor for Moose attributes.
+SYNOPSIS
+      package Thinger;
+      use Moose;
+            use MooseX::MultiInitArg;
+  
+      has 'data' => (
+          metaclass => 'MultiInitArg',
 
-INSTALLATION
+          # For composability, you could use the following:
+          # traits => ['MooseX::MultiInitArg::Trait'],
 
-To install this module, run the following commands:
+          is        => 'ro',
+          isa       => 'Str',
+          init_args => [qw(munge frobnicate)],
+      );
 
-	perl Makefile.PL
-	make
-	make test
-	make install
+      package main;
 
-SUPPORT AND DOCUMENTATION
+      # All these are equivalent
+      my $foo = Thinger->new(data => 'foo');
+      my $foo = Thinger->new(munge => 'foo');
+      my $foo = Thinger->new(frobnicate => 'foo');
 
-After installing, you can find documentation for this module with the
-perldoc command.
+DESCRIPTION
+    If you've ever wanted to be able to call an attribute any number of
+    things while you're passing arguments to your object constructor, Now
+    You Can.
 
-    perldoc MooseX::MultiInitArg
+    The primary motivator is that I have some attributes that were named
+    inconsistently, and I wanted to rename them without breaking backwards
+    compatibility with my existing API.
 
-You can also look for information at:
+AUTHOR
+    Paul Driver, "<frodwith at cpan.org>"
 
-    Search CPAN
-        http://search.cpan.org/dist/MooseX-MultInitArg
+COPYRIGHT AND LICENSE
+    Copyright 2007-2013 by Paul Driver.
 
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
 
-COPYRIGHT AND LICENCE
-
-Copyright (C) 2008 Paul Driver
-
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.

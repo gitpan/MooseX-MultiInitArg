@@ -3,7 +3,7 @@ package MooseX::MultiInitArg;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use MooseX::MultiInitArg::Attribute;
 use MooseX::MultiInitArg::Trait;
@@ -25,10 +25,10 @@ MooseX::MultiInitArg - Attributes with aliases for constructor arguments.
 	use MooseX::MultiInitArg;
   
   has 'data' => (
-			metaclass => 'MultiInitArg',
+      metaclass => 'MultiInitArg',
 
-			# For composability, you could use the following:
-			# traits => ['MooseX::MultiInitArg::Trait'],
+      # For composability, you could use the following:
+      # traits => ['MooseX::MultiInitArg::Trait'],
 
       is        => 'ro',
       isa       => 'Str',
@@ -57,7 +57,7 @@ Paul Driver, C<< <frodwith at cpan.org> >>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2007-2008 by Paul Driver.
+Copyright 2007-2013 by Paul Driver.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
